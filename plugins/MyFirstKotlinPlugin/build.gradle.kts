@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.aliucord.gradle)
+    alias(libs.plugins.aliucord.plugin)
 }
 
 android {
