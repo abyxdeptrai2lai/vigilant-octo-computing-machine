@@ -35,7 +35,6 @@ class MyFirstKotlinPlugin : Plugin() {
             val parent = input.parent as? ViewGroup ?: return@after
             chatInputRef = input
 
-            // Nút Paste kế dấu +
             val pasteBtn = ImageButton(context).apply {
                 setImageResource(android.R.drawable.ic_menu_edit)
                 setBackgroundColor(android.graphics.Color.TRANSPARENT)
@@ -53,7 +52,6 @@ class MyFirstKotlinPlugin : Plugin() {
             }
             parent.addView(pasteBtn, 1)
 
-            // Tự động chèn Prefix khi khung chat trống
             input.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
@@ -70,7 +68,6 @@ class MyFirstKotlinPlugin : Plugin() {
             })
         }
 
-        // Nút Spam nổi kéo thả
         if (context is android.app.Activity) {
             val rootView = context.window.decorView as ViewGroup
             
@@ -156,14 +153,12 @@ class MyFirstKotlinPlugin : Plugin() {
         }
         scrollView.addView(layout)
 
-        // Dòng 1: Delay
         val delayInput = EditText(context).apply {
-            hint = "1. Delay (ms) - vd: 1000"
+            hint = "1. Delay (ms)"
             inputType = android.text.InputType.TYPE_CLASS_NUMBER
         }
         layout.addView(delayInput)
 
-        // Dòng 2: Tag
         val tagLayout = LinearLayout(context).apply { orientation = LinearLayout.HORIZONTAL }
         val tagCheck = CheckBox(context)
         val tagInput = EditText(context).apply { hint = "2. ID cần tag" }
@@ -171,7 +166,6 @@ class MyFirstKotlinPlugin : Plugin() {
         tagLayout.addView(tagInput)
         layout.addView(tagLayout)
 
-        // Dòng 2.5: Vị trí Tag
         layout.addView(TextView(context).apply { text = "2.5 Vị trí Tag:" })
         val tagPosGroup = RadioGroup(context).apply { orientation = RadioGroup.HORIZONTAL }
         val tagPosOptions = arrayOf("Đầu", "Giữa", "Cuối", "Random", "Cả 2", "Cả 3")
@@ -182,7 +176,6 @@ class MyFirstKotlinPlugin : Plugin() {
         tagPosGroup.check(100)
         layout.addView(tagPosGroup)
 
-        // Dòng 3: Vị trí gửi chữ
         layout.addView(TextView(context).apply { text = "3. Vị trí gửi chữ:" })
         val msgPosGroup = RadioGroup(context)
         val msgPosOptions = arrayOf("Đầu - Cuối", "Cuối - Đầu", "Random", "Full (CopyPaste)")
@@ -193,7 +186,6 @@ class MyFirstKotlinPlugin : Plugin() {
         msgPosGroup.check(200)
         layout.addView(msgPosGroup)
 
-        // Dòng 5: Nguồn chữ
         layout.addView(TextView(context).apply { text = "5. Nguồn chữ:" })
         val msgSourceLayout = LinearLayout(context).apply { orientation = LinearLayout.HORIZONTAL }
         val fileBtn = Button(context).apply { text = "Nhập file .txt" }
@@ -237,8 +229,6 @@ class MyFirstKotlinPlugin : Plugin() {
         val loopCheck = CheckBox(context).apply { text = "Loop (Lặp lại khi hết)" }
         layout.addView(loopCheck)
 
-        // Prefix
-        layout.addView(TextView(context).apply { text = "Prefix (Tự chèn khi chat trống):" })
         val prefixLayout = LinearLayout(context).apply { orientation = LinearLayout.HORIZONTAL }
         val prefixBtn = Button(context).apply { text = "Nhập Prefix" }
         val prefixCheck = CheckBox(context).apply { text = "Bật" }
